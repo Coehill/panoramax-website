@@ -287,6 +287,8 @@
       "contribute_alt_photos": "Illustration d'une personne qui prend une photo",
       "contribute_alt_upload": "Illustration d'une personne qui charge des photos",
       "contribute_alt_map": "Illustration d'une carte",
+      "tutorial_title": "Besoin de plus de documentation sur comment contribuer à Panoramax ?",
+      "tutorial_desc": "Une liste de tutoriels est <a href='https://forum.geocommuns.fr/t/les-tutoriels-pour-contribuer-a-panoramax/1015' target='_blank' rel='noopener'>référencée ici sur le forum des Géocommuns</a>.",
       "subtitle_guide": "Guide des bonnes pratiques de prise de vue",
       "guide_alt_img": "Une photo de prise de vue de bonne qualité",
       "guide_alt_img_saturated": "Une photo de prise de vue de mauvaise qualité",
@@ -366,6 +368,27 @@
           "url": "river.svg",
           "alt": "Icone représentant un fleuve"
         }
+      },
+      "userCase_img_1": {
+        "description": "Détection de panneaux",
+        "image": {
+          "url": "road-signs.png",
+          "alt": "Image de détection de panneaux"
+        }
+      },
+      "userCase_img_2": {
+        "description": "carte.app",
+        "image": {
+          "url": "carte-app.png",
+          "alt": "Capture d'écran de carte.app"
+        }
+      },
+      "userCase_img_3": {
+        "description": "Vue de cour d'eau",
+        "image": {
+          "url": "river-view.png",
+          "alt": "Photo de vue de cours d'eau"
+        }
       }
     },
     "stats": {
@@ -378,7 +401,7 @@
       "chart_desc": "en constante augmentation",
       "chart_line_picture_title": "Évolution du nombre de photos",
       "chart_line_picture_desc": "{number} millions de photos publiées sur les instances publiques Panoramax et son évolution par mois.\n\nLe calcul a été effectué à partir des instances Panoramax de <a href='https://panoramax.ign.fr/' target='_blank' rel='noopener'>l'IGN</a> et <a href='https://panoramax.openstreetmap.fr/' target='_blank' rel='noopener'>d'OSM</a>.",
-      "chart_bar_contrib_desc": "{number} contributeurs recensés sur les instances Panoramax. Ce graphique représente le nombre de contributeurs ayant publiés des photos sur une instance Panoramax.\n\nLe calcul a été effectué à partir des instances Panoramax de <a href='https://panoramax.ign.fr/' target='_blank' rel='noopener'>l'IGN</a> et <a href='https://panoramax.openstreetmap.fr/' target='_blank' rel='noopener'>d'OSM</a>.",
+      "chart_bar_contrib_desc": "{number} contributeurs sont recensés sur les instances publiques Panoramax. Ce graphique représente le nombre de contributeurs ayant publiés des photos sur une instance Panoramax.\n\nLe calcul a été effectué à partir des instances Panoramax de <a href='https://panoramax.ign.fr/' target='_blank' rel='noopener'>l'IGN</a> et <a href='https://panoramax.openstreetmap.fr/' target='_blank' rel='noopener'>d'OSM</a>.",
       "chart_line_km_title": "Évolution de la distance couverte",
       "chart_line_km_desc": "{number} km de territoire (routes, chemins, cours d'eau) couvert sur toutes les instances publiques Panoramax et son évolution par mois.\n\nLe calcul a été effectué à partir des instances Panoramax de <a href='https://panoramax.ign.fr/' target='_blank' rel='noopener'>l'IGN</a> et <a href='https://panoramax.openstreetmap.fr/' target='_blank' rel='noopener'>d'OSM</a>.",
       "chart_bar_contrib_title": "Contributeurs actifs",

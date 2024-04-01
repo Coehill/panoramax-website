@@ -36,9 +36,9 @@ function getSecondMondayDate() {
 }
 function formatNumber(num: number): string {
   if (num < 1000) return String(num)
-  if (num >= 10000000) {
+  if (num >= 1000000) {
     const numString = String(num)
-    if (numString.length > 7) {
+    if (numString.length > 6) {
       const numFormatted = (num / 1000000).toFixed(1)
       const splitted = numFormatted.split('.')
       if (splitted[1] === '0') return splitted[0]

@@ -56,6 +56,7 @@
           </p>
         </li>
       </ul>
+      <InformationCard />
     </section>
     <section v-if="false" class="section">
       <h2 class="contribute-section-title">
@@ -223,6 +224,7 @@ import JoinUs from '@/components/JoinUs.vue'
 import Link from '@/components/Link.vue'
 import { useI18n } from 'vue-i18n'
 import { getSecondMondayDate } from '@/utils'
+import InformationCard from '@/components/InformationCard.vue'
 const { t } = useI18n()
 interface HowToContributeData {
   title: string
