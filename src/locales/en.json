@@ -287,6 +287,8 @@
       "contribute_alt_photos": "Illustration of a person taking a photo",
       "contribute_alt_upload": "Illustration of a person uploading photos",
       "contribute_alt_map": "Illustration of a map",
+      "tutorial_title": "You need more documentation on how to contribute to Panoramax ?",
+      "tutorial_desc": "A list of tutorials is <a href='https://forum.geocommuns.fr/t/les-tutoriels-pour-contribuer-a-panoramax/1015' target='_blank' rel='noopener'>referenced here on the Géocommuns forum</a>.",
       "subtitle_guide": "Guide to good practices",
       "guide_alt_img": "A good quality photo",
       "guide_alt_img_saturated": "A bad quality photo",
@@ -365,6 +367,27 @@
         "image": {
           "url": "river.svg",
           "alt": "River icon"
+        }
+      },
+      "userCase_img_1": {
+        "description": "Road sign detection",
+        "image": {
+          "url": "road-signs.png",
+          "alt": "Road sign detection image"
+        }
+      },
+      "userCase_img_2": {
+        "description": "carte.app",
+        "image": {
+          "url": "carte-app.png",
+          "alt": "Screenshot of carte.app"
+        }
+      },
+      "userCase_img_3": {
+        "description": "Vue de cour d'eau",
+        "image": {
+          "url": "river-view.png",
+          "alt": "Photo of a river"
         }
       }
     },
