@@ -135,7 +135,7 @@ const useCases = <UseCaseData[]>[
 ]
 </script>
 
-<style>
+<style scoped>
 .section {
   padding: 3rem 15%;
 }
@@ -176,14 +176,6 @@ const useCases = <UseCaseData[]>[
   background-color: var(--blue-ligth);
   border-radius: 2rem;
 }
-.carousel__item {
-  width: 100%;
-  background-color: var(--blue-semi-ligth);
-  border-radius: 2rem;
-  display: flex;
-  justify-content: center;
-  position: relative;
-}
 .wrapper-legend {
   padding: 0.5rem;
   position: absolute;
@@ -205,24 +197,6 @@ const useCases = <UseCaseData[]>[
   width: 100%;
   object-fit: contain;
   border-radius: 2rem;
-}
-.carousel__prev {
-  left: -6rem;
-}
-.carousel__next {
-  right: -6rem;
-}
-.carousel__next,
-.carousel__prev {
-  background-color: var(--blue);
-  color: var(--white);
-  border-radius: 50%;
-  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-}
-.carousel__next:hover,
-.carousel__prev:hover {
-  color: var(--white);
-  opacity: 0.8;
 }
 @media (max-width: 1324px) {
   .section {
@@ -262,6 +236,43 @@ const useCases = <UseCaseData[]>[
   }
   .use-case-item {
     flex: 100%;
+  }
+}
+</style>
+<style>
+.carousel__item {
+  width: 100%;
+  background-color: var(--blue-semi-ligth);
+  border-radius: 2rem;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+.carousel__prev {
+  left: -6rem;
+}
+.carousel__next {
+  right: -6rem;
+}
+.carousel__next,
+.carousel__prev {
+  background-color: var(--blue);
+  color: var(--white);
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+.carousel__next:hover,
+.carousel__prev:hover {
+  color: var(--white);
+  opacity: 0.8;
+}
+
+@media (max-width: 500px) {
+  .carousel__prev {
+    left: -4rem;
+  }
+  .carousel__next {
+    right: -4rem;
   }
 }
 </style>
