@@ -187,7 +187,6 @@
 
 <script lang="ts" setup>
 import { computed, onMounted, ref } from 'vue'
-import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { formatNumber } from '@/utils'
 import { BarChart, useBarChart } from 'vue-chart-3'
@@ -219,7 +218,6 @@ interface MetricsData {
   description: string
 }
 const { t } = useI18n()
-const route = useRoute()
 
 const doughnutProperties = {
   color: '#0A1F69',
