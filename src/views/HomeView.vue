@@ -397,6 +397,11 @@ const medias = computed((): Image[] => {
       url: t('pages.home.media_logo_4.url'),
       alt: t('pages.home.media_logo_4.alt'),
       link: t('pages.home.media_logo_4.link')
+    },
+    {
+      url: t('pages.home.media_logo_5.url'),
+      alt: t('pages.home.media_logo_5.alt'),
+      link: t('pages.home.media_logo_5.link')
     }
   ]
 })
@@ -630,6 +635,15 @@ section:nth-child(even) {
   margin-left: 2rem;
   margin-right: 2rem;
 }
+@media (max-width: 1324px) {
+  .media-list .wrapper-list {
+    flex-direction: column;
+    align-items: center;
+  }
+  .media-list li {
+    margin-top: 2rem;
+  }
+}
 @media (max-width: 1024px) {
   .wrapper-list {
     flex-direction: column;
@@ -641,9 +655,6 @@ section:nth-child(even) {
   }
   .list-join-us {
     width: 100%;
-  }
-  .media-list li {
-    margin-top: 2rem;
   }
   .media-list li:first-child {
     margin-top: 0;

@@ -15,9 +15,22 @@
         />
       </ol>
       <div class="wrapper-charts">
-        <h2 class="charts-subtitle">
-          {{ $t('pages.stats.chart_line_picture_title') }}
-        </h2>
+        <div class="wrapper-charts-subtitle">
+          <button
+            id="photos"
+            class="subtitle-button"
+            @click="copyToClipboard('#photos')"
+          >
+            <img
+              src="@/assets/images/lien.svg"
+              loading="lazy"
+              class="subtitle-button-img"
+            />
+          </button>
+          <h2 class="charts-subtitle">
+            {{ $t('pages.stats.chart_line_picture_title') }}
+          </h2>
+        </div>
         <div class="charts">
           <LineChart
             :labels="dataLabels"
@@ -38,9 +51,22 @@
         </div>
       </div>
       <div class="wrapper-charts">
-        <h2 class="charts-subtitle">
-          {{ $t('pages.stats.chart_line_km_title') }}
-        </h2>
+        <div class="wrapper-charts-subtitle">
+          <button
+            id="distance"
+            class="subtitle-button"
+            @click="copyToClipboard('#distance')"
+          >
+            <img
+              src="@/assets/images/lien.svg"
+              loading="lazy"
+              class="subtitle-button-img"
+            />
+          </button>
+          <h2 class="charts-subtitle">
+            {{ $t('pages.stats.chart_line_km_title') }}
+          </h2>
+        </div>
         <div class="charts">
           <LineChart :labels="dataLabels" :datasets="[{ data: dataCovKm }]" />
           <div class="wrapper-stat-desc">
@@ -58,9 +84,22 @@
         </div>
       </div>
       <div class="wrapper-charts">
-        <h2 class="charts-subtitle">
-          {{ $t('pages.stats.chart_bar_contrib_title') }}
-        </h2>
+        <div class="wrapper-charts-subtitle">
+          <button
+            id="contributeurs"
+            class="subtitle-button"
+            @click="copyToClipboard('#contributeurs')"
+          >
+            <img
+              src="@/assets/images/lien.svg"
+              loading="lazy"
+              class="subtitle-button-img"
+            />
+          </button>
+          <h2 class="charts-subtitle">
+            {{ $t('pages.stats.chart_bar_contrib_title') }}
+          </h2>
+        </div>
         <div class="charts">
           <div class="wrapper-bar-charts">
             <BarChart v-bind="barChartProps" />
@@ -84,11 +123,11 @@
             {{ $t('pages.stats.doughnut_pictures_title') }}
           </h3>
           <DoughnutChart
-            :labels="['IGN', 'OSM-FR']"
+            :labels="['OSM-FR', 'IGN']"
             :datasets="[
               {
                 data: dataPicturesInstancesPercentage,
-                backgroundColor: ['#71777A', '#76CC6C'],
+                backgroundColor: ['#76CC6C', '#71777A'],
                 datalabels: {
                   formatter: function (value: any, context: any) {
                     return `${formatNumber(
@@ -106,11 +145,11 @@
             {{ $t('pages.stats.doughnut_km_title') }}
           </h3>
           <DoughnutChart
-            :labels="['IGN', 'OSM-FR']"
+            :labels="['OSM-FR', 'IGN']"
             :datasets="[
               {
                 data: dataCovKmInstancesPercentage,
-                backgroundColor: ['#71777A', '#76CC6C'],
+                backgroundColor: ['#76CC6C', '#71777A'],
                 datalabels: {
                   formatter: function (value: any, context: any) {
                     return formatNumber(dataCovKmInstances[context.dataIndex])
@@ -126,11 +165,11 @@
             {{ $t('pages.stats.doughnut_contrib_title') }}
           </h3>
           <DoughnutChart
-            :labels="['IGN', 'OSM-FR']"
+            :labels="['OSM-FR', 'IGN']"
             :datasets="[
               {
                 data: dataContribInstancesPercentage,
-                backgroundColor: ['#71777A', '#76CC6C'],
+                backgroundColor: ['#76CC6C', '#71777A'],
                 datalabels: {
                   formatter: function (value: any, context: any) {
                     return formatNumber(dataContribInstances[context.dataIndex])
@@ -148,6 +187,7 @@
 
 <script lang="ts" setup>
 import { computed, onMounted, ref } from 'vue'
+import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { formatNumber } from '@/utils'
 import { BarChart, useBarChart } from 'vue-chart-3'
@@ -179,6 +219,7 @@ interface MetricsData {
   description: string
 }
 const { t } = useI18n()
+const route = useRoute()
 
 const doughnutProperties = {
   color: '#0A1F69',
@@ -304,6 +345,14 @@ onMounted(async () => {
 function calcPercentageTwoNumber(total: number, numberToCalc: number): number {
   return Math.round((numberToCalc / total) * 100)
 }
+async function copyToClipboard(value: string): Promise<void> {
+  const fullUrl = `${window.location.origin}${window.location.pathname}${value}`
+  console.log(fullUrl)
+  await navigator.clipboard.writeText(fullUrl).then(
+    () => true,
+    () => false
+  )
+}
 function calculateMonthlySum(data: Record<string, any>): {
   months: string[]
   nb_pictures: number[]
@@ -381,8 +430,26 @@ function calculateMonthlySum(data: Record<string, any>): {
 .wrapper-charts {
   margin-top: 10rem;
 }
-.charts-subtitle {
+.wrapper-charts-subtitle {
+  display: flex;
+  align-items: center;
   margin-bottom: 2rem;
+}
+.subtitle-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin-right: 1rem;
+}
+.subtitle-button:hover {
+  opacity: 0.7;
+}
+.subtitle-button-img {
+  height: 2rem;
 }
 .doughnut-subtitle {
   margin-bottom: 2rem;

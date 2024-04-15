@@ -348,8 +348,8 @@ function formatLangListUrl(lang: string): string {
     padding-bottom: 0;
   }
   .lang-block {
-    top: 4rem;
-    left: -2rem;
+    top: 2.5rem;
+    left: -3rem;
   }
 }
 </style>
