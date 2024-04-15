@@ -123,11 +123,11 @@
             {{ $t('pages.stats.doughnut_pictures_title') }}
           </h3>
           <DoughnutChart
-            :labels="['OSM-FR', 'IGN']"
+            :labels="instancesList.map((e) => e.name)"
             :datasets="[
               {
                 data: dataPicturesInstancesPercentage,
-                backgroundColor: ['#76CC6C', '#71777A'],
+                backgroundColor: instancesList.map((e) => e.color),
                 datalabels: {
                   formatter: function (value: any, context: any) {
                     return `${formatNumber(
@@ -145,11 +145,11 @@
             {{ $t('pages.stats.doughnut_km_title') }}
           </h3>
           <DoughnutChart
-            :labels="['OSM-FR', 'IGN']"
+            :labels="instancesList.map((e) => e.name)"
             :datasets="[
               {
                 data: dataCovKmInstancesPercentage,
-                backgroundColor: ['#76CC6C', '#71777A'],
+                backgroundColor: instancesList.map((e) => e.color),
                 datalabels: {
                   formatter: function (value: any, context: any) {
                     return formatNumber(dataCovKmInstances[context.dataIndex])
@@ -165,11 +165,11 @@
             {{ $t('pages.stats.doughnut_contrib_title') }}
           </h3>
           <DoughnutChart
-            :labels="['OSM-FR', 'IGN']"
+            :labels="instancesList.map((e) => e.name)"
             :datasets="[
               {
                 data: dataContribInstancesPercentage,
-                backgroundColor: ['#76CC6C', '#71777A'],
+                backgroundColor: instancesList.map((e) => e.color),
                 datalabels: {
                   formatter: function (value: any, context: any) {
                     return formatNumber(dataContribInstances[context.dataIndex])
@@ -210,6 +210,7 @@ const dataContribInstances = ref<number[]>([])
 const dataContribInstancesPercentage = ref<number[]>([])
 const dataActiveContrib = ref<number[]>([])
 const dataLabels = ref<string[]>([])
+const instancesList = ref<{ name: string; color: string }[]>([])
 const averagePictures = ref<string>('')
 const averageKm = ref<string>('')
 interface MetricsData {
@@ -260,14 +261,14 @@ onMounted(async () => {
   const api = import.meta.env.VITE_API_URL
   const data = await fetch(`${api}stats/`)
   const jsonData = await data.json()
-  let instancesList: string[] = []
+  let listInstance: string[] = []
   Object.keys(jsonData.stats_by_instance).forEach(function (key) {
-    instancesList = [...instancesList, key]
+    listInstance = [...listInstance, key]
   })
   let totalApproximatedCoverageKm = 0
   let totalNbPictures = 0
   let totalNbContrib = 0
-  instancesList.map((e) => {
+  listInstance.map((e) => {
     totalApproximatedCoverageKm =
       totalApproximatedCoverageKm +
       jsonData.stats_by_instance[e].approximated_coverage_km
@@ -276,7 +277,7 @@ onMounted(async () => {
     totalNbContrib =
       totalNbContrib + jsonData.stats_by_instance[e].nb_contributors
   })
-  instancesList.map((e) => {
+  listInstance.map((e) => {
     dataCovKmInstancesPercentage.value = [
       ...dataCovKmInstancesPercentage.value,
       calcPercentageTwoNumber(
@@ -329,6 +330,7 @@ onMounted(async () => {
     }
   ]
   const resultCalc = calculateMonthlySum(jsonData.stats_by_upload_month)
+  instancesList.value = formatInstanceList([...listInstance, 'toto', 'tot&'])
   dataLabels.value = resultCalc.months
   dataPictures.value = resultCalc.nb_pictures
   dataActiveContrib.value = resultCalc.nb_active_contributors
@@ -340,12 +342,26 @@ onMounted(async () => {
     'pages.stats.stats_month'
   )}`
 })
+function formatInstanceList(
+  listInstance: string[]
+): { name: string; color: string }[] {
+  const colorsArray = ['#0A1F69', '#f6fafe', '#2954E9', '#fdf474']
+  return listInstance.map((e) => {
+    let obj = { name: e.toUpperCase() }
+    if (e === 'osm-fr') return { ...obj, color: '#76CC6C' }
+    else if (e === 'ign') return { ...obj, color: '#71777A' }
+    else return { ...obj, color: getRandomItem(colorsArray) }
+  })
+}
+function getRandomItem(arr: string[]) {
+  const randomIndex = Math.floor(Math.random() * arr.length)
+  return arr[randomIndex]
+}
 function calcPercentageTwoNumber(total: number, numberToCalc: number): number {
   return Math.round((numberToCalc / total) * 100)
 }
 async function copyToClipboard(value: string): Promise<void> {
   const fullUrl = `${window.location.origin}${window.location.pathname}${value}`
-  console.log(fullUrl)
   await navigator.clipboard.writeText(fullUrl).then(
     () => true,
     () => false
