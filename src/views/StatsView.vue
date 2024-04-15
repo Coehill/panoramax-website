@@ -330,7 +330,7 @@ onMounted(async () => {
     }
   ]
   const resultCalc = calculateMonthlySum(jsonData.stats_by_upload_month)
-  instancesList.value = formatInstanceList([...listInstance, 'toto', 'tot&'])
+  instancesList.value = formatInstanceList(listInstance)
   dataLabels.value = resultCalc.months
   dataPictures.value = resultCalc.nb_pictures
   dataActiveContrib.value = resultCalc.nb_active_contributors
