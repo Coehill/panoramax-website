@@ -38,6 +38,11 @@ const lineData = computed(() => ({
 const { lineChartProps } = useLineChart({
   chartData: lineData,
   options: {
+    layout: {
+      padding: {
+        top: 20
+      }
+    },
     plugins: {
       legend: {
         display: false
